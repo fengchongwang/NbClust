@@ -1830,13 +1830,14 @@ Indice.Gap <- function (x, clall, reference.distribution = "unif", B = 10,
      foundPseudo <- FALSE
      for (ncP in min_nc:max_nc)
        {
-
-      if ((res[ncP-min_nc+1,15]<=resCritical[ncP-min_nc+1,2]) && (!foundPseudo))
-        {
-          ncPseudo <- ncP
-     	  indicePseudo <- res[ncP-min_nc+1,15]
-    	  foundPseudo <- TRUE
-    	  }
+       if (ncP-min_nc+1<=dim(res)[1] && ncP-min_nc+1 <=dim(resCritical)[1] && !is.na(res[ncP-min_nc+1,15]) && !is.na(resCritical[ncP-min_nc+1,2])){
+          if ((res[ncP-min_nc+1,15]<=resCritical[ncP-min_nc+1,2]) && (!foundPseudo))
+            {
+              ncPseudo <- ncP
+     	      indicePseudo <- res[ncP-min_nc+1,15]
+    	      foundPseudo <- TRUE
+    	     }
+	 }
      }
       if (foundPseudo)
         {
